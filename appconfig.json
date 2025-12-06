@@ -8,11 +8,5 @@
 	"minWidth": 100,
 	"minHeight": 50,
 	"requestHandlers": [ ],
-	"appFrame": "default",
 	"permissions": "overlay,gamestate"
 }
-
-
-
-
-
