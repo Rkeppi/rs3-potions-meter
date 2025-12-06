@@ -8,8 +8,9 @@
 	"minWidth": 100,
 	"minHeight": 50,
 	"requestHandlers": [ ],
-	"permissions": "overlay,gamestate"
+	"permissions": "pixel,overlay,gamestate"
 }
+
 
 
 
