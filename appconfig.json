@@ -1,8 +1,14 @@
 {
-  "appName": "Potions Meter",
-  "version": "1.0",
-  "author": "Keppi",
-  "description": "Calculates Potions/h from Herblore XP rate (XP/h ÷ XP per potion). Displays in-app and as overlay.",
-  "appUrl": ".",
-  "permissionsRequired": ["gamestate"]
+	"appName": "Potion Meter",
+	"description": "Potions per hour.",
+	"appUrl": "https://rkeppi.github.io/rs3-potions-meter/",
+	"configUrl": "https://rkeppi.github.io/rs3-potions-meter//appconfig.json",
+	"iconUrl": "/apps/alt1/xpmeter/icon.png",
+	"defaultWidth": 200,
+	"defaultHeight": 90,
+	"minWidth": 100,
+	"minHeight": 50,
+	"requestHandlers": [ ],
+	"appFrame": "default",
+	"permissions": "pixel,overlay,gamestate"
 }
