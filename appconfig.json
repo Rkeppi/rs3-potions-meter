@@ -1,8 +1,8 @@
 {
 	"appName": "Potion Meter",
 	"description": "Potions per hour.",
-	"appUrl": "./index.html",
-	"configUrl": "./appconfig.json",
+	"appUrl": "/rs3-potions-meter/index.html",
+	"configUrl": "/rs3-potions-meter/appconfig.json",
 	"defaultWidth": 200,
 	"defaultHeight": 90,
 	"minWidth": 100,
@@ -10,4 +10,5 @@
 	"requestHandlers": [ ],
 	"permissions": "overlay,gamestate"
 }
+
 
