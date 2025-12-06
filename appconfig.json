@@ -2,7 +2,7 @@
 	"appName": "Potion Meter",
 	"description": "Potions per hour.",
 	"appUrl": "https://rkeppi.github.io/rs3-potions-meter/",
-	"configUrl": "https://rkeppi.github.io/rs3-potions-meter//appconfig.json",
+	"configUrl": "https://rkeppi.github.io/rs3-potions-meter/appconfig.json",
 	"iconUrl": "/apps/alt1/xpmeter/icon.png",
 	"defaultWidth": 200,
 	"defaultHeight": 90,
@@ -12,3 +12,4 @@
 	"appFrame": "default",
 	"permissions": "pixel,overlay,gamestate"
 }
+
