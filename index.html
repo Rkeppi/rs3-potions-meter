@@ -1,1 +1,85 @@
-asd
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Potions Meter</title>
+  <style>
+    body { font-family: Arial; background: rgba(0,0,0,0.8); color: white; padding: 20px; }
+    #meter { font-size: 24px; font-weight: bold; margin: 10px 0; }
+    input { padding: 5px; font-size: 16px; width: 150px; }
+    button { padding: 5px 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div>
+    <label>XP per potion: <input id="xpPerPotion" type="number" placeholder="e.g. 250" value="250"></label><br>
+    <button onclick="startTracking()">Start Session</button>
+    <button onclick="stopTracking()">Stop</button>
+  </div>
+  <div id="meter">Potions/h: --</div>
+  <div id="xph">XP/h: --</div>
+
+  <script>
+    // Register app (shows "Add to Alt1" button)
+    if (typeof alt1 !== 'undefined') alt1.identifyAppUrl('./appconfig.json');
+
+    let tracking = false;
+    let startTime = 0;
+    let startHerbloreXp = 0;
+    let intervalId = null;
+
+    // Callback for XP counters (called ~every few seconds by Alt1)
+    window.onXpCounters = function(data) {
+      if (!tracking) return;
+      console.log('XP Data:', data);  // Inspect in Alt1 DevTools (right-click spanner > Dev Console) to see exact format
+
+      // Parse data for Herblore XP total (adapt based on console.log; typically data.counters or data.skills array)
+      let herbloreXp = 0;
+      if (data.counters) {
+        for (let counter of data.counters) {
+          if (counter.name && counter.name.toLowerCase().includes('herblore')) {
+            herbloreXp = parseInt(counter.xp) || 0;
+            break;
+          }
+        }
+      } else if (data.skills) {
+        // Alternative format: find by skill ID/name
+        herbloreXp = data.skills[15] || 0;  // Herblore is skill ID 15?
+      }
+
+      let timeHours = (Date.now() - startTime) / 3600000;
+      let xpGained = herbloreXp - startHerbloreXp;
+      let xph = timeHours > 0 ? xpGained / timeHours : 0;
+      let xpPer = parseInt(document.getElementById('xpPerPotion').value) || 0;
+      let potsH = xpPer > 0 ? xph / xpPer : 0;
+
+      document.getElementById('meter').textContent = `Potions/h: ${Math.round(potsH)}`;
+      document.getElementById('xph').textContent = `Herblore XP/h: ${Math.round(xph)}`;
+
+      // Overlay display (near top-left; adjust x,y; requires [Overlay] permission)
+      if (alt1.hasOverlayPermission()) {
+        alt1.setGroup('potionsmeter');  // Group for easy clear
+        alt1.overlayText(`Potions/h: ${Math.round(potsH)}`, 0xFFFFFFFF, 20, 50, 50, 5000);  // White text, size 20, pos (50,50), fade after 5s
+      }
+    };
+
+    function startTracking() {
+      if (!alt1.hasGamestatePermission()) {
+        alert('Grant [Gamestate] permission in Alt1 settings!');
+        return;
+      }
+      tracking = true;
+      startTime = Date.now();
+      // Trigger initial read to capture startXp
+      alt1.xpCounterListener('onXpCounters');  // Starts periodic calls<grok-card data-id="915913" data-type="citation_card"></grok-card>
+      setTimeout(() => { /* Wait for first callback */ }, 2000);
+    }
+
+    function stopTracking() {
+      tracking = false;
+      if (intervalId) clearInterval(intervalId);
+      alt1.clearGroup('potionsmeter');  // Clear overlay
+      document.getElementById('meter').textContent = 'Potions/h: --';
+    }
+  </script>
+</body>
+</html>
