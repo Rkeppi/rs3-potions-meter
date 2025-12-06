@@ -1,7 +1,7 @@
 {
 	"appName": "Potion Meter",
 	"description": "Potions per hour.",
-	"appUrl": "./",
+	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
 	"defaultWidth": 200,
 	"defaultHeight": 90,
@@ -10,3 +10,4 @@
 	"requestHandlers": [ ],
 	"permissions": "overlay,gamestate"
 }
+
