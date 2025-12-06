@@ -1,9 +1,8 @@
 {
 	"appName": "Potion Meter",
 	"description": "Potions per hour.",
-	"appUrl": ".",
-	"configUrl": "/appconfig.json",
-	"iconUrl": "/apps/alt1/xpmeter/icon.png",
+	"appUrl": "./",
+	"configUrl": "./appconfig.json",
 	"defaultWidth": 200,
 	"defaultHeight": 90,
 	"minWidth": 100,
@@ -12,6 +11,7 @@
 	"appFrame": "default",
 	"permissions": "overlay,gamestate"
 }
+
 
 
 
