@@ -1,8 +1,9 @@
 {
   "appName": "Potions Meter",
   "version": "1.0",
-  "author": "Your RSN or name",
+  "author": "Keppi",
   "description": "Calculates Potions/h from Herblore XP rate (XP/h ÷ XP per potion). Displays in-app and as overlay.",
   "appUrl": ".",
   "runInBrowser": true
 }
+
